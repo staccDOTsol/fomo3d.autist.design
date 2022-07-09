@@ -125,7 +125,7 @@ const Home = () => {
     } catch (err){
       console.log(err)
     }
-  }, 5000)
+  }, 65000)
   const initStage = async () => {
     if (!wallet) return;
     if (!bet) return;
