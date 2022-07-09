@@ -109,7 +109,7 @@ try {
                 winnerlol = req.query.player as string
                 wenEnd = new Date().getTime() + 1000 * 60 * 60 * 24
                 thePot+=parseInt(req.query.risk as string)
-
+/*
                 // var done = false;
                 if (true) {
                   try {
@@ -123,6 +123,7 @@ try {
                       space: config.space ? new BN(config.space) : new BN(500),
                       finalized: config.oracleState.finalized,
                     });
+                    
 
                     await anchorProgram.updateMatchFromOracle(
                       {},
@@ -147,6 +148,7 @@ try {
                     console.log(err);
                   }
                 }
+                */
 
               } catch (err) {
                 console.log(err);
@@ -166,7 +168,7 @@ try {
   } catch (err) {
     console.log(err);
   }
-  
+  fs.writeFileSync("./thisiscool.json", JSON.stringify(config))
 });
 
 let winnerlol: string
