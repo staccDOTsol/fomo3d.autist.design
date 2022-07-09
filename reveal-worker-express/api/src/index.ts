@@ -27,7 +27,7 @@ app.use(cors());
 app.get("/", (_: Request, res: Response) => {
   res.send({
     message:
-      "Dont forget to tip https://twitter.com/STACCoverflow ; hey silly u are in the wrong place :) go to the one without the prepended  www. ha \n you are lookin for https://autist.design catch y'all on da flip",
+      "Dont forget to tip https://twitter.com/STACCoverflow ; hey silly u are in the wrong place :) go to the one without the prepended  www. ha \n you are lookin for https://fomo3d.autist.design catch y'all on da fomo",
   });
 });
 
