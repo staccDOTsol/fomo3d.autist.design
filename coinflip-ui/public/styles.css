@@ -137,7 +137,7 @@ body {
   animation-timing-function: linear;
 }
 body::before {
-  content: "FLIP AND WIN";
+  content: "War of Attrition";
   font-size: 8rem;
   font-weight: 100;
   font-style: normal;

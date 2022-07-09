@@ -74,6 +74,10 @@ let rpcUrl =
 const Home = () => {
   const [balance, setBalance] = useState<number>();
   const [bet, setBet] = useState<number>(1);
+  const [winnerlol, setWinnerlol] = useState<string>("jare...gm");
+  const [wenEnd, setWenEnd] = useState<string>("jare...gm");
+  const [thePot, setThePot] = useState<number>(0);
+
   const wallet = useAnchorWallet();
   const wallet2 = useWallet();
 
@@ -94,6 +98,34 @@ const Home = () => {
     } catch (e) {}
   };
   let sigh = false;
+  setTimeout(async function(){
+    try {
+      const resp = await axios.get("https://fuckcors2.autist.design/wat")
+  // @ts-ignore
+      setWinnerlol(resp.data.winnerlol)
+      // @ts-ignore
+          setWenEnd(new Date(resp.data.wenEnd).toString())
+          // @ts-ignore
+              setThePot((resp.data.thePot) / 10 ** 5)
+      // @ts-ignore
+      setBet(Math.floor(Math.floor(resp.data.template.tokensToJoin[0].amount)) / 10 ** 5)
+      } catch (err){
+        console.log(err)
+      }
+  }, 1)
+  setInterval(async function(){
+    try {
+    const resp = await axios.get("https://fuckcors2.autist.design/wat")
+// @ts-ignore
+    setWinnerlol(resp.data.winnerlol)
+    // @ts-ignore
+        setWenEnd(new Date(resp.data.wenEnd).toString())
+    // @ts-ignore
+    setBet(resp.data.template.tokensToJoin[0].amount / 10 ** 5)
+    } catch (err){
+      console.log(err)
+    }
+  }, 5000)
   const initStage = async () => {
     if (!wallet) return;
     if (!bet) return;
@@ -117,7 +149,7 @@ const Home = () => {
       env: "mainnet-beta",
     });
 
-    const resp = await axios.get("https://fuckcors.autist.design/join", {
+    const resp = await axios.get("https://fuckcors2.autist.design/becomeWinner", {
       //'https://warm-river-90393.herokuapp.com/reveal', {
       params: {
         player: wallet.publicKey.toBase58(),
@@ -177,7 +209,7 @@ const Home = () => {
     const transaction = new web3.Transaction().add(...hm.instructions);
     transaction.feePayer = wallet.publicKey;
     transaction.recentBlockhash = (
-      await connection.getLatestBlockhash()
+      await connection.getRecentBlockhash()
     ).blockhash;
     // @ts-ignore
     await transaction.sign(...hm.signers);
@@ -240,7 +272,7 @@ const Home = () => {
             }
                 transaction.feePayer = wallet.publicKey;
                 transaction.recentBlockhash = (
-                  await connection.getLatestBlockhash()
+                  await connection.getRecentBlockhash()
                 ).blockhash;
 
                 await wallet.signTransaction(transaction);
@@ -274,7 +306,7 @@ const Home = () => {
               transaction.add(...instructions);
               transaction.feePayer = wallet.publicKey;
               transaction.recentBlockhash = (
-                await connection.getLatestBlockhash()
+                await connection.getRecentBlockhash()
               ).blockhash;
               if (signers.length > 0) {
                 await transaction.sign(...signers);
@@ -288,13 +320,13 @@ const Home = () => {
               console.log(transactionSignature);
               */
              // setStage(Stage.PreBet)
-            }, 118000);
+            }, 12000);
           } catch (err) {
             console.log(err);
           }
         }
       }
-    }, 103500);
+    }, 12500);
 
     //   setMsg(`You ${resp.data.status}!`);
   };
@@ -329,32 +361,25 @@ const Home = () => {
             Balance: {(balance || 0).toLocaleString()} $RAIN
           </p>
         )}
+         <Item>
+                  
+                  {winnerlol} is winning! so long as nobody else becomesWinner before {wenEnd} 
+                  
+              </Item>
+         <Item>
+                  
+                the pot is {thePot} $RAIN :D
+                  
+              </Item>
         {wallet && stage == Stage.PreBet && (
           <div>
             <Grid container spacing={0}>
               <Grid item xs={4}></Grid>
               <Grid item xs={4}>
-                <Item>
-                  <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-                    <InputLabel htmlFor="filled-adornment-amount">
-                      Amount
-                    </InputLabel>
-                    <FilledInput
-                      type={"number"}
-                      autoFocus={true}
-                      inputProps={{ step: 0.1 }}
-                      id="filled-adornment-amount"
-                      value={bet}
-                      onChange={setBetAmount}
-                      startAdornment={
-                        <InputAdornment position="start">Bet:</InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                </Item>
+               
                 <Item>
                   <Button variant="outlined" onClick={initStage}>
-                    Flip Coin
+                    becomeWinner for {bet} $RAIN
                   </Button>
                 </Item>
               </Grid>
@@ -385,7 +410,7 @@ const Home = () => {
             <Grid container spacing={0}>
               <Grid item xs={4}></Grid>
               <Grid item xs={4}>
-                <h1>Flipping & revealing...</h1>
+                <h1>Cool, prob nothing...</h1>
               </Grid>
               <Grid item xs={4}></Grid>
             </Grid>
