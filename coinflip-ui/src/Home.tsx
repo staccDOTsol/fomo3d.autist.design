@@ -121,7 +121,7 @@ const Home = () => {
     // @ts-ignore
         setWenEnd(new Date(resp.data.wenEnd).toString())
     // @ts-ignore
-    setBet(resp.data.template.tokensToJoin[0].amount / 10 ** 5)
+    setBet(Math.floor(resp.data.template.tokensToJoin[0].amount / 10 ** 5) * 1.01)
     } catch (err){
       console.log(err)
     }
