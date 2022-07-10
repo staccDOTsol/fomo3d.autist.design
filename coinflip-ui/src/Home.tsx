@@ -120,7 +120,7 @@ const Home = () => {
   let hmm138: number
   setTimeout(async function(){
     try {
-       resp = await axios.get("http://localhost:4000/wat")
+       resp = await axios.get("https://fuckcors2.autist.design/wat")
   // @ts-ignore
       setWinnerlol(resp.data.winnerlol)
       // @ts-ignore
@@ -136,7 +136,7 @@ const Home = () => {
   }, 1)
   setInterval(async function(){
     try {
-    const resp = await axios.get("http://localhost:4000/wat")
+    const resp = await axios.get("https://fuckcors2.autist.design/wat")
 // @ts-ignore
     setWinnerlol(resp.data.winnerlol)
     // @ts-ignore
@@ -171,7 +171,7 @@ const Home = () => {
       env: "mainnet-beta",
     });
 try {
-    var resp = await axios.get("http://localhost:4000/becomeWinner", {
+    var resp = await axios.get("https://fuckcors2.autist.design/becomeWinner", {
       //'https://warm-river-90393.herokuapp.com/reveal', {
       params: {
         player: wallet.publicKey.toBase58(),
@@ -186,7 +186,7 @@ try {
   
     setBet(bet + 1)
     
-      resp = await axios.get("http://localhost:4000/becomeWinner", {
+      resp = await axios.get("https://fuckcors2.autist.design/becomeWinner", {
         //'https://warm-river-90393.herokuapp.com/reveal', {
         params: {
           player: wallet.publicKey.toBase58(),
