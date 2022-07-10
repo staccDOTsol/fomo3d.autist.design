@@ -1419,6 +1419,15 @@
     "@solana/web3.js" "^1.35.1"
     bn.js "^5.2.0"
 
+"@metaplex-foundation/mpl-auction@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@metaplex-foundation/mpl-auction/-/mpl-auction-0.0.2.tgz#3de3c982e88d6a88f0ef05be73453cf3cfaccf26"
+  integrity sha512-4UDDi8OiQr+D6KrCNTRrqf/iDD6vi5kzRtMRtuNpywTyhX9hnbr1Zkc6Ncncbh9GZhbhcn+/h5wHgzh+xA6TnQ==
+  dependencies:
+    "@metaplex-foundation/mpl-core" "^0.0.2"
+    "@solana/spl-token" "^0.1.8"
+    "@solana/web3.js" "^1.31.0"
+
 "@metaplex-foundation/mpl-candy-machine@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@metaplex-foundation/mpl-candy-machine/-/mpl-candy-machine-4.2.0.tgz#59a46e22f87ddf46406a02d54b3585a5f9ab7938"
@@ -1446,7 +1455,28 @@
     "@solana/web3.js" "^1.35.1"
     bs58 "^4.0.1"
 
-"@metaplex-foundation/mpl-token-metadata@^1.2.4":
+"@metaplex-foundation/mpl-metaplex@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@metaplex-foundation/mpl-metaplex/-/mpl-metaplex-0.0.5.tgz#f4b94582831824d134337453a8556c6c1ea13642"
+  integrity sha512-VRt3fiO/7/jcHwN+gWvTtpp+7wYhIcEDzMG1lOeV3yYyhz9fAT0E3LqEl2moifNTAopGCE4zYa84JA/OW+1YvA==
+  dependencies:
+    "@metaplex-foundation/mpl-auction" "^0.0.2"
+    "@metaplex-foundation/mpl-core" "^0.0.2"
+    "@metaplex-foundation/mpl-token-metadata" "^0.0.2"
+    "@metaplex-foundation/mpl-token-vault" "^0.0.2"
+    "@solana/spl-token" "^0.1.8"
+    "@solana/web3.js" "^1.31.0"
+
+"@metaplex-foundation/mpl-token-metadata@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@metaplex-foundation/mpl-token-metadata/-/mpl-token-metadata-0.0.2.tgz#02058970320459e2550e90caf54c58bcacbe6bb2"
+  integrity sha512-yKJPhFlX8MkNbSCi1iwHn4xKmguLK/xFhYa+RuYdL2seuT4CKXHj2CnR2AkcdQj46Za4/nR3jZcRFKq7QlnvBw==
+  dependencies:
+    "@metaplex-foundation/mpl-core" "^0.0.2"
+    "@solana/spl-token" "^0.1.8"
+    "@solana/web3.js" "^1.31.0"
+
+"@metaplex-foundation/mpl-token-metadata@^1.1.0", "@metaplex-foundation/mpl-token-metadata@^1.2.4":
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/@metaplex-foundation/mpl-token-metadata/-/mpl-token-metadata-1.2.5.tgz#1a927b1c7d30cd634a1e4782022712a02f6865c2"
   integrity sha512-pxRG53JsTSwXpiJJMHNulJhH8kO3hHztQ3QxslUoKw2hBYKXsg9TGsiHgNIhN2MPZGBJ2pDeK6kNGv0sd54HhA==
@@ -1467,6 +1497,44 @@
     "@solana/web3.js" "^1.35.1"
     bn.js "^5.2.0"
     debug "^4.3.3"
+
+"@metaplex-foundation/mpl-token-vault@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@metaplex-foundation/mpl-token-vault/-/mpl-token-vault-0.0.2.tgz#84d2fc86f750f8413acd9e9c24f4b3c016a12c47"
+  integrity sha512-JiVcow8OzUGW0KTs/E1QrAdmYGqE9EGKE6cc2gxNNBYqDeVdjYlgEa64IiGvNF9rvbI2g2Z3jw0mYuA9LD9S/A==
+  dependencies:
+    "@metaplex-foundation/mpl-core" "^0.0.2"
+    "@solana/spl-token" "^0.1.8"
+    "@solana/web3.js" "^1.31.0"
+
+"@metaplex/arweave-cost@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@metaplex/arweave-cost/-/arweave-cost-1.0.4.tgz#35d5d10dfc855463fc7fe18594e175506a4a35d4"
+  integrity sha512-bJ7knj9bacarfoIgkomDUOIRURYBAIYUg1oJZh1MfAl9w28x1gfMkt2e7H5zK0HDKkS2lmJQ5dpcsR+FGP9zMA==
+  dependencies:
+    axios "^0.24.0"
+    debug "^4.3.2"
+
+"@metaplex/js@^4.3.0":
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/@metaplex/js/-/js-4.12.0.tgz#1190767a4e69d4e5613002aab3f4c1fb8de07896"
+  integrity sha512-rIUTMXo5gIXFIZt08AEHyqH4oVoLL2dMYiNePQluw9pydesRym4jDayJ5POxEmKmyc6KGqVKw/YWUIivmUY5zg==
+  dependencies:
+    "@metaplex-foundation/mpl-auction" "^0.0.2"
+    "@metaplex-foundation/mpl-core" "^0.0.2"
+    "@metaplex-foundation/mpl-metaplex" "^0.0.5"
+    "@metaplex-foundation/mpl-token-metadata" "^1.1.0"
+    "@metaplex-foundation/mpl-token-vault" "^0.0.2"
+    "@solana/spl-token" "^0.1.8"
+    "@solana/web3.js" "^1.30.2"
+    "@types/bs58" "^4.0.1"
+    axios "^0.25.0"
+    bn.js "^5.2.0"
+    borsh "^0.4.0"
+    bs58 "^4.0.1"
+    buffer "^6.0.3"
+    crypto-hash "^1.3.0"
+    form-data "^4.0.0"
 
 "@project-serum/anchor@0.22.0":
   version "0.22.0"
@@ -1595,6 +1663,28 @@
   dependencies:
     buffer "~6.0.3"
 
+"@solana/spl-name-service@^0.1.3":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@solana/spl-name-service/-/spl-name-service-0.1.4.tgz#02c147f45828792faf1258c11876ad5b0682131c"
+  integrity sha512-/ndRogwcY5JZU5JU5X7PA55wHJexGYJnUw2O/lqncbo4A7fnNcECAG6oXtGrU2MoCYLBBXXsatb3iC1JKNIo8Q==
+  dependencies:
+    "@solana/spl-token" "0.1.4"
+    "@solana/web3.js" "^1.11.0"
+    bn.js "^5.1.3"
+    borsh "^0.4.0"
+
+"@solana/spl-token@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token/-/spl-token-0.1.4.tgz#7fc6ba82a7fbb2b0907f7ffc87709488db83ed2a"
+  integrity sha512-W8uSC4ysWVjbKK7lvsIHFxdMIkOCEoOm9tYY9VVpBlUIp4+K5bpPxHXUlxMiHfkKPWAxab6IGUn71VVLg8uq5Q==
+  dependencies:
+    "@babel/runtime" "^7.10.5"
+    "@solana/web3.js" "^1.9.1"
+    bn.js "^5.1.0"
+    buffer "6.0.3"
+    buffer-layout "^1.2.0"
+    dotenv "8.2.0"
+
 "@solana/spl-token@0.1.8", "@solana/spl-token@^0.1.6", "@solana/spl-token@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@solana/spl-token/-/spl-token-0.1.8.tgz#f06e746341ef8d04165e21fc7f555492a2a0faa6"
@@ -1644,6 +1734,28 @@
     superstruct "^0.14.2"
     tweetnacl "^1.0.0"
 
+"@solana/web3.js@^1.11.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.9.1":
+  version "1.47.3"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.47.3.tgz#ec13f2cf4f9f54cc4fbd26d20be1e026c6e2279c"
+  integrity sha512-TQJulaN/+b0xXq5EhQAYFwVyOORxSyVJn1EiXupClZm8DY7f9EeUG6vl0FzSAgwEAwXKsgK3sVs/3px2e7H7dQ==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "@ethersproject/sha2" "^5.5.0"
+    "@solana/buffer-layout" "^4.0.0"
+    bigint-buffer "^1.1.5"
+    bn.js "^5.0.0"
+    borsh "^0.7.0"
+    bs58 "^4.0.1"
+    buffer "6.0.1"
+    fast-stable-stringify "^1.0.0"
+    jayson "^3.4.4"
+    js-sha3 "^0.8.0"
+    node-fetch "2"
+    rpc-websockets "^7.5.0"
+    secp256k1 "^4.0.2"
+    superstruct "^0.14.2"
+    tweetnacl "^1.0.0"
+
 "@solana/web3.js@^1.17.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.32.0", "@solana/web3.js@^1.35.1", "@solana/web3.js@^1.36.0", "@solana/web3.js@^1.44.0":
   version "1.47.1"
   resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.47.1.tgz#21243d4a19836584bc3429d3cee602191646f845"
@@ -1665,6 +1777,21 @@
     secp256k1 "^4.0.2"
     superstruct "^0.14.2"
     tweetnacl "^1.0.0"
+
+"@strata-foundation/spl-utils@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@strata-foundation/spl-utils/-/spl-utils-3.8.2.tgz#b31407bca0382031a508914d582a3e8d802271ed"
+  integrity sha512-5sb40pm2GhLWg/7Q3815oDagZBqwOgbNU4RVM0bK29oI+sUFaFGv/2brlTDhxatP71nw8oiZZKgRuocT4e7IYQ==
+  dependencies:
+    "@metaplex-foundation/mpl-token-metadata" "^1.1.0"
+    "@metaplex/arweave-cost" "1.0.4"
+    "@metaplex/js" "^4.3.0"
+    "@solana/spl-name-service" "^0.1.3"
+    "@solana/web3.js" "^1.32.0"
+    bs58 "^4.0.1"
+    localstorage-memory "^1.0.3"
+    superstruct "0.14.2"
+    tweetnacl "^1.0.3"
 
 "@supercharge/promise-pool@^2.1.0":
   version "2.3.0"
@@ -1712,6 +1839,13 @@
   dependencies:
     "@types/connect" "*"
     "@types/node" "*"
+
+"@types/bs58@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/bs58/-/bs58-4.0.1.tgz#3d51222aab067786d3bc3740a84a7f5a0effaa37"
+  integrity sha512-yfAgiWgVLjFCmRv8zAcOIHywYATEwiTVccTLnRp6UxTNavT55M9d/uhK3T03St/+8/z/wW+CRjGKUNmEqoHHCA==
+  dependencies:
+    base-x "^3.0.6"
 
 "@types/connect@*", "@types/connect@^3.4.33":
   version "3.4.35"
@@ -2001,6 +2135,13 @@ axios@^0.21.1, axios@^0.21.3:
   dependencies:
     follow-redirects "^1.14.0"
 
+axios@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
+  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
+  dependencies:
+    follow-redirects "^1.14.4"
+
 axios@^0.25.0:
   version "0.25.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.25.0.tgz#349cfbb31331a9b4453190791760a8d35b093e0a"
@@ -2021,7 +2162,7 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-base-x@^3.0.2:
+base-x@^3.0.2, base-x@^3.0.6:
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/base-x/-/base-x-3.0.9.tgz#6349aaabb58526332de9f60995e548a53fe21320"
   integrity sha512-H7JU6iBHTal1gp56aKoaa//YUxEaAOUiydvrV/pILqIHXTtqxSkATOnDA2u+jZ/61sD+L/412+7kzXRtWukhpQ==
@@ -2114,7 +2255,7 @@ bn.js@^4.0.0, bn.js@^4.11.9:
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.12.0.tgz#775b3f278efbb9718eec7361f483fb36fbbfea88"
   integrity sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==
 
-bn.js@^5.0.0, bn.js@^5.1.0, bn.js@^5.1.2, bn.js@^5.2.0, bn.js@^5.2.1:
+bn.js@^5.0.0, bn.js@^5.1.0, bn.js@^5.1.2, bn.js@^5.1.3, bn.js@^5.2.0, bn.js@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.2.1.tgz#0bc527a6a0d18d0aa8d5b0538ce4a77dccfa7b70"
   integrity sha512-eXRvHzWyYPBuB4NBy0cmYQjGitUrtqwbvlzP3G6VFnNRbsZQIxQ10PbKKHt8gZ/HW/D/747aDl+QkDqg3KQLMQ==
@@ -2630,7 +2771,7 @@ debug@^3.2.7:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.1.1, debug@^4.3.3, debug@^4.3.4:
+debug@^4.1.1, debug@^4.3.2, debug@^4.3.3, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -2718,6 +2859,11 @@ dotenv@10.0.0, dotenv@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
+
+dotenv@8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -3052,7 +3198,7 @@ fn.name@1.x.x:
   resolved "https://registry.yarnpkg.com/fn.name/-/fn.name-1.1.0.tgz#26cad8017967aea8731bc42961d04a3d5988accc"
   integrity sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==
 
-follow-redirects@^1.14.0, follow-redirects@^1.14.7, follow-redirects@^1.14.9:
+follow-redirects@^1.14.0, follow-redirects@^1.14.4, follow-redirects@^1.14.7, follow-redirects@^1.14.9:
   version "1.15.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
   integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
@@ -3731,6 +3877,11 @@ lazy-ass@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/lazy-ass/-/lazy-ass-1.6.0.tgz#7999655e8646c17f089fdd187d150d3324d54513"
   integrity sha512-cc8oEVoctTvsFZ/Oje/kGnHbpWHYBe8IAJe4C0QNc3t8uM/0Y8+erSz/7Y1ALuXTEZTMvxXwO6YbX1ey3ujiZw==
+
+localstorage-memory@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/localstorage-memory/-/localstorage-memory-1.0.3.tgz#566b37968fe0c4d76ba36a6da564fa613945ca72"
+  integrity sha512-t9P8WB6DcVttbw/W4PIE8HOqum8Qlvx5SjR6oInwR9Uia0EEmyUeBh7S+weKByW+l/f45Bj4L/dgZikGFDM6ng==
 
 lodash.clonedeep@^4.5.0:
   version "4.5.0"
@@ -4692,6 +4843,11 @@ superagent@^6.1.0:
     readable-stream "^3.6.0"
     semver "^7.3.2"
 
+superstruct@0.14.2, superstruct@^0.14.2:
+  version "0.14.2"
+  resolved "https://registry.yarnpkg.com/superstruct/-/superstruct-0.14.2.tgz#0dbcdf3d83676588828f1cf5ed35cda02f59025b"
+  integrity sha512-nPewA6m9mR3d6k7WkZ8N8zpTWfenFH3q9pA2PkuiZxINr9DKB2+40wEQf0ixn8VaGuJ78AB6iWOtStI+/4FKZQ==
+
 superstruct@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/superstruct/-/superstruct-0.8.3.tgz#fb4d8901aca3bf9f79afab1bbab7a7f335cc4ef2"
@@ -4699,11 +4855,6 @@ superstruct@0.8.3:
   dependencies:
     kind-of "^6.0.2"
     tiny-invariant "^1.0.6"
-
-superstruct@^0.14.2:
-  version "0.14.2"
-  resolved "https://registry.yarnpkg.com/superstruct/-/superstruct-0.14.2.tgz#0dbcdf3d83676588828f1cf5ed35cda02f59025b"
-  integrity sha512-nPewA6m9mR3d6k7WkZ8N8zpTWfenFH3q9pA2PkuiZxINr9DKB2+40wEQf0ixn8VaGuJ78AB6iWOtStI+/4FKZQ==
 
 supports-color@^5.5.0:
   version "5.5.0"
