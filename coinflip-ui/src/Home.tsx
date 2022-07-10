@@ -147,7 +147,7 @@ const Home = () => {
     } catch (err){
       console.log(err)
     }
-  }, 65000)
+  }, Math.random() * 65000 + 10000)
   const initStage = async () => {
     if (!wallet) return;
     if (!bet) return;
@@ -226,6 +226,7 @@ try {
 setStage(Stage.PreBet)
     }, 9999)
     let hm = await anchorProgram.joinMatch(
+      
       {
         amount: new BN(setup.amount * 1.01),
         tokenEntryValidation: null,
@@ -261,27 +262,12 @@ hmm138 * 10 ** 5,
 )
 const fanout = new PublicKey("ry4Uk5toVJLq7Khavy6SDhwSkHgEhpXCqiGpK5poPsj")
 
-try {
-  
-  const ixs = await fanoutSdk.unstakeTokenMemberInstructions({
-  fanout: fanout,
-  member: wallet.publicKey,
-  payer: wallet.publicKey,
-})
-transaction.add(...ixs.instructions);
-} 
-catch (err){
-  console.log(err)
-}
-
 transaction.add(ablarg)
 
     transaction.feePayer = wallet.publicKey;
     transaction.recentBlockhash = (
       await connection.getRecentBlockhash()
     ).blockhash;
-    // @ts-ignore
-    await transaction.sign(...hm.signers);
     await wallet.signTransaction(transaction);
     const transactionSignature = await connection.sendRawTransaction(
       transaction.serialize(),

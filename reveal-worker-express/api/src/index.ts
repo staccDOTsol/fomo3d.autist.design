@@ -42,6 +42,19 @@ app.get("/wat", async (_: Request, res: Response) => {
 res.send({template:tconfig, winnerlol, wenEnd, thePot})
 
 })
+
+app.get("/wat2", async (_: Request, res: Response) => {
+  let tconfig = config ;
+  let has = []
+  for (var ablarg of tconfig.oracleState.tokenTransfers){
+    // @ts-ignore
+has.push({from: ablarg.from, amount: ablarg.amount})
+  }
+  // @ts-ignore
+  tconfig.oracleState.tokenTransfers = has
+res.send({template:tconfig, winnerlol, wenEnd, thePot})
+
+})
 app.get("/becomeWinner", async (req: Request, res: Response) => {
   try {
 
@@ -77,6 +90,7 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
 
       try {
         setTimeout(async function(){
+          /*
       const ixs = await fanoutSdk.stakeForTokenMemberInstructions({
         shares,//parseInt(req.query.risk as string) * 0.01,
         fanout: fanout,
@@ -96,7 +110,7 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
      connection.sendRawTransaction(
       transaction.serialize(),
       { skipPreflight: false }
-    );
+    );*/
      }, 90000)
       } catch (err){
         console.log(err)
