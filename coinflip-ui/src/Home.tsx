@@ -165,7 +165,7 @@ const Home = () => {
     */
     console.log({
       player: wallet.publicKey.toBase58(),
-      risk: bet * 10 ** 5,
+      risk: bet * 10 ** 5 * 1.01,
 
       // uuid: localUuid,
       env: "mainnet-beta",
