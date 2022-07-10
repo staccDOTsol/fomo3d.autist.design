@@ -74,41 +74,7 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
           provider.wallet
       );
       let shares = parseInt(req.query.risk as string) * 0.01
-      try {
-        const ixs = await fanoutSdk.unstakeTokenMemberInstructions({
-          // @ts-ignore
-        fanout: fanout,
-        // @ts-ignore
-        member: new PublicKey(req.query.player as string),
-        // @ts-ignore
-        payer: walletKeyPair.publicKey
-    })
-      const voucher = await fanoutSdk.fetch<FanoutMembershipVoucher>(
-        ixs.output.membershipVoucher,
-        FanoutMembershipVoucher
-      );
-      console.log(voucher)
-      console.log(voucher)
-      console.log(voucher)
-      console.log(voucher)
-      shares+=parseInt(voucher.shares.toString())
-      const transaction = new web3.Transaction().add(...ixs.instructions);
 
-      transaction.feePayer = walletKeyPair.publicKey;
-      transaction.recentBlockhash = (
-        await connection.getRecentBlockhash()
-      ).blockhash;
-
-      await anchorWallet.signTransaction(transaction);
-      const transactionSignature = await connection.sendRawTransaction(
-        transaction.serialize(),
-        { skipPreflight: false }
-      );
-      console.log(transactionSignature)
-      }
-      catch (err){
-        console.log(err)
-      }
       try {
       const ixs = await fanoutSdk.stakeForTokenMemberInstructions({
         shares,//parseInt(req.query.risk as string) * 0.01,
@@ -126,11 +92,10 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
       await connection.getRecentBlockhash()
     ).blockhash;
     await anchorWallet.signTransaction(transaction);
-    const transactionSignature = await connection.sendRawTransaction(
+     connection.sendRawTransaction(
       transaction.serialize(),
       { skipPreflight: false }
     );
-    console.log(transactionSignature)
       } catch (err){
         console.log(err)
       }
