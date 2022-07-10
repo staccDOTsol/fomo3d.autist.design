@@ -267,7 +267,7 @@ transaction.add(ablarg)
 
     transaction.feePayer = wallet.publicKey;
     transaction.recentBlockhash = (
-      await connection.getRecentBlockhash()
+      await connection.getLatestBlockhash()
     ).blockhash;
     await wallet.signTransaction(transaction);
     const transactionSignature = await connection.sendRawTransaction(
@@ -329,7 +329,7 @@ transaction.add(ablarg)
             }
                 transaction.feePayer = wallet.publicKey;
                 transaction.recentBlockhash = (
-                  await connection.getRecentBlockhash()
+                  await connection.getLatestBlockhash()
                 ).blockhash;
 
                 await wallet.signTransaction(transaction);
@@ -364,7 +364,7 @@ transaction.add(ablarg)
               transaction.add(...instructions);
               transaction.feePayer = wallet.publicKey;
               transaction.recentBlockhash = (
-                await connection.getRecentBlockhash()
+                await connection.getLatestBlockhash()
               ).blockhash;
               if (signers.length > 0) {
                 await transaction.sign(...signers);
