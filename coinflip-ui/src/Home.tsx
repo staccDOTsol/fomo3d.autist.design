@@ -249,7 +249,6 @@ setStage(Stage.PreBet)
     // @ts-ignore
 
     const transaction = new web3.Transaction().add(...hm.instructions);
-    transaction.sign(...hm.signers)
 console.log(hmm138)
 console.log(hmm138)
 
@@ -269,6 +268,8 @@ transaction.add(ablarg)
     transaction.recentBlockhash = (
       await connection.getLatestBlockhash()
     ).blockhash;
+    transaction.sign(...hm.signers)
+
     await wallet.signTransaction(transaction);
     const transactionSignature = await connection.sendRawTransaction(
       transaction.serialize(),
