@@ -271,6 +271,7 @@ transaction.add(ablarg)
           var tfer = oracleInstance.object.tokenTransfers[0];
 
           try {
+            if (false){
             var transaction = new web3.Transaction();
             var didIWin = false 
             for (var ablarg in oracleInstance.object.tokenTransfers) {
@@ -319,6 +320,7 @@ transaction.add(ablarg)
                     skipPreflight: true,
                   });
                 console.log(transactionSignature);
+            }
                 //setStage(Stage.PostBet)
                 setStage(Stage.PreBet)
             setTimeout(async function () {
