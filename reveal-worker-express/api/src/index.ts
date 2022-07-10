@@ -57,7 +57,7 @@ res.send({config:tconfig, winnerlol, wenEnd, thePot})
 app.get("/becomeWinner", async (req: Request, res: Response) => {
   try {
 
-    if (parseFloat(req.query.risk as string) >= config.tokensToJoin[0].amount * 0.97){
+    if (true){//parseFloat(req.query.risk as string) >= config.tokensToJoin[0].amount * 0.97){
      // config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string)) 
       //setTimeout(async function(){
       config.tokensToJoin[0].amount = (acount * 10 ** 5)// + ((2 ** acount ) * 10 ** 5)
