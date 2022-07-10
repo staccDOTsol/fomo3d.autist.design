@@ -19,6 +19,7 @@ if (fs.existsSync(".env")) {
     throw result.error;
   }
 }
+let acount = 1
 
 const app = express();
 app.use(bodyParser());
@@ -57,10 +58,11 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
   try {
 
     if (parseFloat(req.query.risk as string) >= config.tokensToJoin[0].amount * 0.97){
-      config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string)) 
-      setTimeout(async function(){
-      config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string)) * 1.005
-      }, 10222)
+     // config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string)) 
+      //setTimeout(async function(){
+      config.tokensToJoin[0].amount = (acount * 10 ** 5)// + ((2 ** acount ) * 10 ** 5)
+      acount++
+    //  }, 10222)
       console.log("gud");
       const walletKeyPair = Keypair.fromSecretKey(
         new Uint8Array(
