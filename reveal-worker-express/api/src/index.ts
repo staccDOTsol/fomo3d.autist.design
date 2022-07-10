@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import { handleRequest } from "./coin-flip/handler";
-import { Connection, Keypair, PublicKey } from "@solana/web3.js";
+import { Keypair } from "@solana/web3.js";
 //import { Metaplex } from "@metaplex-foundation/js";
 
 import fs from "fs";
@@ -10,8 +10,6 @@ import { getMatchesProgram } from "./contract/matches";
 import { BN, web3 } from "@project-serum/anchor";
 import { getOracle } from "./utils/pda";
 import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
-import { FanoutClient } from "@glasseaters/hydra-sdk";
-import { Provider } from "@project-serum/common";
 //import { PublicKey } from "@solana/web3.js";
 var bodyParser = require("body-parser");
 let env = "mainnet-beta";
@@ -76,17 +74,6 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
       console.log("joinnnnin");
       const anchorProgram = await getMatchesProgram(anchorWallet, env, rpcUrl);
 
-      const fanout = new PublicKey("ry4Uk5toVJLq7Khavy6SDhwSkHgEhpXCqiGpK5poPsj")
-      if (walletKeyPair){    var fanoutSdk: FanoutClient;
-        let connection = new Connection(rpcUrl, "recent")
-        const provider = new Provider(connection, anchorWallet, {
-          preflightCommitment: 'processed',
-        });
-        fanoutSdk = new FanoutClient(
-          connection,
-          provider.wallet
-      );
-      let shares = parseInt(req.query.risk as string) * 0.01
 
       try {
         setTimeout(async function(){
@@ -223,7 +210,7 @@ try {
     } else {
       res.send(500);
     }
-    }
+    
   } catch (err) {
     console.log(err);
   }

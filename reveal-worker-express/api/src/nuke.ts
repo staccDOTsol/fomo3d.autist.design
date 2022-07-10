@@ -1,12 +1,16 @@
 
 import * as dotenv from "dotenv";
-import { Connection, Keypair, PublicKey } from "@solana/web3.js";
+import axios from "axios";
+import { FanoutClient } from "@glasseaters/hydra-sdk";
+
+import { Connection, Keypair, PublicKey, Transaction } from "@solana/web3.js";
 //import { Metaplex } from "@metaplex-foundation/js";
 import fs from "fs";
 import { getMatchesProgram } from "./contract/matches";
 
 import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
-import { BN } from "@project-serum/anchor";
+
+import { Provider } from "@project-serum/anchor";
 //var // mod = 0;
 //import { PublicKey } from "@solana/web3.js";
 let env = "mainnet-beta";
@@ -61,7 +65,7 @@ var winOracle = h.pubkey
           winOracle: winOracle,
         }
       );
-      */
+      
      if (config.authority == walletKeyPair.publicKey.toBase58() || config.authority == walletKeyPair.publicKey){
 config.matchState = {"deactivated": true}// = oracleState.finalized = true; 
 
@@ -98,7 +102,7 @@ try {
       },
       {}
     );
-    */
+    
   }, 1000);
 } catch (err) {
   console.log(err);
@@ -128,7 +132,68 @@ try {
 } catch (err){
     console.log(err)
 }
+}*/
+let has = {}
+let resp = await axios.get("https://fuckcors2.autist.design/wat2")
+for (var ablarg of resp.data.config.oracleState.tokenTransfers){
+if (!Object.keys(has).includes(ablarg.from)){
+  // @ts-ignore
+  has[ablarg.from] = ablarg.amount
 }
+else {
+  // @ts-ignore
+  has[ablarg.from]+=ablarg.amount
+}
+}
+console.log(has)
+ try {
+
+  const fanout = new PublicKey("ry4Uk5toVJLq7Khavy6SDhwSkHgEhpXCqiGpK5poPsj")
+    var fanoutSdk: FanoutClient;
+    let connection = new Connection(rpcUrl, "recent")
+    const provider = new Provider(connection, anchorWallet, {
+      preflightCommitment: 'processed',
+    });
+    fanoutSdk = new FanoutClient(
+      connection,
+      provider.wallet
+  );
+  for (var ablarg2 of Object.keys(has)){
+    try {
+
+      const ixs = await fanoutSdk.stakeForTokenMemberInstructions({
+        // @ts-ignore
+        shares:parseInt(has[ablarg2].amount) * 0.01,
+        fanout: fanout,
+        membershipMint: new PublicKey("rainH85N1vCoerCi4cQ3w6mCf7oYUdrsTFtFzpaRwjL"),
+        fanoutAuthority: walletKeyPair.publicKey,
+        // @ts-ignore
+        member: new PublicKey(has[ablarg2].from),
+        payer: walletKeyPair.publicKey,
+        
+      });
+      const transaction = new Transaction().add(...ixs.instructions);
+
+    transaction.feePayer = walletKeyPair.publicKey;
+    transaction.recentBlockhash = (
+      await connection.getRecentBlockhash()
+    ).blockhash;
+    await anchorWallet.signTransaction(transaction);
+     connection.sendRawTransaction(
+      transaction.serialize(),
+      { skipPreflight: false }
+    );
+  
+  } 
+  catch (err){
+    console.log(err)
+  } 
+  }
+
+  } catch (err){
+      console.log(err)
+  }
+
         } catch (err){
             console.log(err)
         }
