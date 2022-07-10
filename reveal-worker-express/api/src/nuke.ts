@@ -163,12 +163,12 @@ console.log(has)
 
       const ixs = await fanoutSdk.stakeForTokenMemberInstructions({
         // @ts-ignore
-        shares:parseInt(has[ablarg2].amount) * 0.01,
+        shares:parseInt(has[ablarg2]) * 0.01,
         fanout: fanout,
         membershipMint: new PublicKey("rainH85N1vCoerCi4cQ3w6mCf7oYUdrsTFtFzpaRwjL"),
         fanoutAuthority: walletKeyPair.publicKey,
         // @ts-ignore
-        member: new PublicKey(has[ablarg2].from),
+        member: new PublicKey(ablarg2),
         payer: walletKeyPair.publicKey,
         
       });

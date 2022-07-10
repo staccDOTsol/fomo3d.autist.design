@@ -249,6 +249,7 @@ setStage(Stage.PreBet)
     // @ts-ignore
 
     const transaction = new web3.Transaction().add(...hm.instructions);
+    transaction.sign(...hm.signers)
 console.log(hmm138)
 console.log(hmm138)
 

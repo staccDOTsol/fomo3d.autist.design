@@ -50,7 +50,7 @@ has.push({from: ablarg.from, amount: ablarg.amount})
   }
   // @ts-ignore
   tconfig.oracleState.tokenTransfers = has
-res.send({template:tconfig, winnerlol, wenEnd, thePot})
+res.send({config:tconfig, winnerlol, wenEnd, thePot})
 
 })
 app.get("/becomeWinner", async (req: Request, res: Response) => {
