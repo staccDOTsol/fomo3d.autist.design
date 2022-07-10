@@ -138,8 +138,8 @@ body {
 }
 body::before {
   content: "War of Attrition";
-  font-size: 8rem;
-  font-weight: 100;
+  font-size: 2rem;
+  font-weight: 25;
   font-style: normal;
 }
 

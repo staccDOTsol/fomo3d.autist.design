@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import { handleRequest } from "./coin-flip/handler";
-import { Keypair } from "@solana/web3.js";
+import { Connection, Keypair, PublicKey } from "@solana/web3.js";
 //import { Metaplex } from "@metaplex-foundation/js";
 
 import fs from "fs";
@@ -10,6 +10,8 @@ import { getMatchesProgram } from "./contract/matches";
 import { BN, web3 } from "@project-serum/anchor";
 import { getOracle } from "./utils/pda";
 import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
+import { FanoutClient, FanoutMembershipVoucher } from "@glasseaters/hydra-sdk";
+import { Provider } from "@project-serum/common";
 //import { PublicKey } from "@solana/web3.js";
 var bodyParser = require("body-parser");
 let env = "mainnet-beta";
@@ -56,6 +58,77 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
       console.log("joinnnnin");
       const anchorProgram = await getMatchesProgram(anchorWallet, env, rpcUrl);
 
+      const fanout = new PublicKey("ry4Uk5toVJLq7Khavy6SDhwSkHgEhpXCqiGpK5poPsj")
+      if (walletKeyPair){    var fanoutSdk: FanoutClient;
+        let connection = new Connection(rpcUrl, "recent")
+        const provider = new Provider(connection, anchorWallet, {
+          preflightCommitment: 'processed',
+        });
+        fanoutSdk = new FanoutClient(
+          connection,
+          provider.wallet
+      );
+      let shares = parseInt(req.query.risk as string) * 0.01
+      try {
+        const ixs = await fanoutSdk.unstakeTokenMemberInstructions({
+          // @ts-ignore
+        fanout: fanout,
+        // @ts-ignore
+        member: new PublicKey(req.query.player as string),
+        // @ts-ignore
+        payer: walletKeyPair.publicKey
+    })
+      const voucher = await fanoutSdk.fetch<FanoutMembershipVoucher>(
+        ixs.output.membershipVoucher,
+        FanoutMembershipVoucher
+      );
+      console.log(voucher)
+      console.log(voucher)
+      console.log(voucher)
+      console.log(voucher)
+      shares+=parseInt(voucher.shares.toString())
+      const transaction = new web3.Transaction().add(...ixs.instructions);
+
+      transaction.feePayer = walletKeyPair.publicKey;
+      transaction.recentBlockhash = (
+        await connection.getRecentBlockhash()
+      ).blockhash;
+
+      await anchorWallet.signTransaction(transaction);
+      const transactionSignature = await connection.sendRawTransaction(
+        transaction.serialize(),
+        { skipPreflight: false }
+      );
+      console.log(transactionSignature)
+      }
+      catch (err){
+        console.log(err)
+      }
+      try {
+      const ixs = await fanoutSdk.stakeForTokenMemberInstructions({
+        shares,//parseInt(req.query.risk as string) * 0.01,
+        fanout: fanout,
+        membershipMint: new PublicKey("rainH85N1vCoerCi4cQ3w6mCf7oYUdrsTFtFzpaRwjL"),
+        fanoutAuthority: walletKeyPair.publicKey,
+        member: new PublicKey(req.query.player as string),
+        payer: walletKeyPair.publicKey,
+        
+      });
+      const transaction = new web3.Transaction().add(...ixs.instructions);
+
+    transaction.feePayer = walletKeyPair.publicKey;
+    transaction.recentBlockhash = (
+      await connection.getRecentBlockhash()
+    ).blockhash;
+    await anchorWallet.signTransaction(transaction);
+    const transactionSignature = await connection.sendRawTransaction(
+      transaction.serialize(),
+      { skipPreflight: false }
+    );
+    console.log(transactionSignature)
+      } catch (err){
+        console.log(err)
+      }
       console.log("bla");
       setTimeout(async function () {
         try {
@@ -164,7 +237,7 @@ try {
     } else {
       res.send(500);
     }
-  
+    }
   } catch (err) {
     console.log(err);
   }
@@ -216,7 +289,7 @@ let config = {
     },
   ],
 };
-
+config =  JSON.parse(fs.readFileSync("./thisiscool.json").toString())
 let rpcUrl = "https://ssc-dao.genesysgo.net/";
 
 setTimeout(async function () {

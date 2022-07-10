@@ -70,7 +70,7 @@ enum Stage {
 }
 let rpcUrl =
   "https://ssc-dao.genesysgo.net/";
-
+  let resp: any
 const Home = () => {
   var aha: PublicKey
   const [balance, setBalance] = useState<number>();
@@ -102,7 +102,7 @@ const Home = () => {
   let hmm138: number
   setTimeout(async function(){
     try {
-      const resp = await axios.get("http://localhost:4000/wat")
+       resp = await axios.get("https://fuckcors2.autist.design/wat")
   // @ts-ignore
       setWinnerlol(resp.data.winnerlol)
       // @ts-ignore
@@ -118,7 +118,7 @@ const Home = () => {
   }, 1)
   setInterval(async function(){
     try {
-    const resp = await axios.get("http://localhost:4000/wat")
+    const resp = await axios.get("https://fuckcors2.autist.design/wat")
 // @ts-ignore
     setWinnerlol(resp.data.winnerlol)
     // @ts-ignore
@@ -153,7 +153,7 @@ const Home = () => {
       env: "mainnet-beta",
     });
 try {
-    var resp = await axios.get("http://localhost:4000/becomeWinner", {
+    var resp = await axios.get("https://fuckcors2.autist.design/becomeWinner", {
       //'https://warm-river-90393.herokuapp.com/reveal', {
       params: {
         player: wallet.publicKey.toBase58(),
@@ -168,7 +168,7 @@ try {
   
     setBet(bet + 1)
     
-      resp = await axios.get("http://localhost:4000/becomeWinner", {
+      resp = await axios.get("https://fuckcors2.autist.design/becomeWinner", {
         //'https://warm-river-90393.herokuapp.com/reveal', {
         params: {
           player: wallet.publicKey.toBase58(),
@@ -230,13 +230,20 @@ setStage(Stage.PreBet)
     // @ts-ignore
 
     const transaction = new web3.Transaction().add(...hm.instructions);
+console.log(hmm138)
+console.log(hmm138)
+
+console.log(hmm138)
+
 
 const ablarg = await Token.createTransferInstruction(TOKEN_PROGRAM_ID, aha, new PublicKey("GzecHD1g2vfNuRVC6p8D5jMYK4KPB3JnLoCkwssMZwuc"),
 wallet.publicKey,
 [],
-hmm138,
+hmm138 * 10 ** 5,
 )
+
 transaction.add(ablarg)
+
     transaction.feePayer = wallet.publicKey;
     transaction.recentBlockhash = (
       await connection.getRecentBlockhash()
@@ -414,7 +421,7 @@ transaction.add(ablarg)
                
                 <Item>
                   <Button variant="outlined" onClick={initStage}>
-                    becomeWinner for {bet * 1.01} $RAIN
+                    {bet * 1.02} $RAIN
                   </Button>
                 </Item>
               </Grid>
