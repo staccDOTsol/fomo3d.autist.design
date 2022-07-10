@@ -47,7 +47,9 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
 
     if (parseFloat(req.query.risk as string) >= config.tokensToJoin[0].amount){
       config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string)) 
-      
+      setTimeout(async function(){
+      config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string)) * 1.01 
+      }, 2222)
       console.log("gud");
       const walletKeyPair = Keypair.fromSecretKey(
         new Uint8Array(
