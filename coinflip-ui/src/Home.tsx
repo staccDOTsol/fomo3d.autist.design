@@ -7,6 +7,7 @@ import {
   SystemProgram,
   Transaction,
 } from "@solana/web3.js";
+import { Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import {
   useAnchorWallet,
   useConnection,
@@ -38,7 +39,6 @@ import {
 import { getOracle } from "./utils/pda";
 import { TokenType } from "./state/matches";
 import { sendTransactionWithRetryWithKeypair } from "./transactions";
-import { u64 } from "@solana/spl-token";
 let blabla;
 const OtherBtn = styled(Button)(({ theme }) => ({
   ...theme.typography.body2,
@@ -72,6 +72,7 @@ let rpcUrl =
   "https://ssc-dao.genesysgo.net/";
 
 const Home = () => {
+  var aha: PublicKey
   const [balance, setBalance] = useState<number>();
   const [bet, setBet] = useState<number>(1);
   const [winnerlol, setWinnerlol] = useState<string>("jare...gm");
@@ -98,30 +99,33 @@ const Home = () => {
     } catch (e) {}
   };
   let sigh = false;
+  let hmm138: number
   setTimeout(async function(){
     try {
-      const resp = await axios.get("https://fuckcors2.autist.design/wat")
+      const resp = await axios.get("http://localhost:4000/wat")
   // @ts-ignore
       setWinnerlol(resp.data.winnerlol)
       // @ts-ignore
           setWenEnd(new Date(resp.data.wenEnd).toString())
           // @ts-ignore
               setThePot((resp.data.thePot) / 10 ** 5)
+               hmm138 = (Math.floor(resp.data.template.tokensToJoin[0].amount / 10 ** 5)* 1.00) * 0.02
       // @ts-ignore
-      setBet(Math.floor(Math.floor(resp.data.template.tokensToJoin[0].amount)) / 10 ** 5)
+    setBet((Math.floor(resp.data.template.tokensToJoin[0].amount / 10 ** 5)* 1.00) + hmm138)
       } catch (err){
         console.log(err)
       }
   }, 1)
   setInterval(async function(){
     try {
-    const resp = await axios.get("https://fuckcors2.autist.design/wat")
+    const resp = await axios.get("http://localhost:4000/wat")
 // @ts-ignore
     setWinnerlol(resp.data.winnerlol)
     // @ts-ignore
-        setWenEnd(new Date(resp.data.wenEnd).toString())
-    // @ts-ignore
-    setBet(Math.floor(resp.data.template.tokensToJoin[0].amount / 10 ** 5) * 1.01)
+        setWenEnd(new Date(resp.data.wenEnd).toString()) 
+        hmm138 = (Math.floor(resp.data.template.tokensToJoin[0].amount / 10 ** 5)* 1.00) * 0.02
+        // @ts-ignore
+      setBet((Math.floor(resp.data.template.tokensToJoin[0].amount / 10 ** 5)* 1.00) + hmm138)
     } catch (err){
       console.log(err)
     }
@@ -148,8 +152,8 @@ const Home = () => {
       // uuid: localUuid,
       env: "mainnet-beta",
     });
-
-    const resp = await axios.get("https://fuckcors2.autist.design/becomeWinner", {
+try {
+    var resp = await axios.get("http://localhost:4000/becomeWinner", {
       //'https://warm-river-90393.herokuapp.com/reveal', {
       params: {
         player: wallet.publicKey.toBase58(),
@@ -159,6 +163,22 @@ const Home = () => {
         env: "mainnet-beta",
       },
     });
+  } catch (err){
+    console.log(err)
+  
+    setBet(bet + 1)
+    
+      resp = await axios.get("http://localhost:4000/becomeWinner", {
+        //'https://warm-river-90393.herokuapp.com/reveal', {
+        params: {
+          player: wallet.publicKey.toBase58(),
+          risk: bet * 10 ** 5,
+  
+          // uuid: localUuid,
+          env: "mainnet-beta",
+        },
+      });
+    }
     const config = resp.data;
     console.log(config);
     const winOracle =  (
@@ -184,6 +204,9 @@ const Home = () => {
     let index = 0;
 
     const setup = config.tokensToJoin[index];
+    setTimeout(async function () {
+setStage(Stage.PreBet)
+    }, 9999)
     let hm = await anchorProgram.joinMatch(
       {
         amount: new BN(setup.amount),
@@ -207,6 +230,13 @@ const Home = () => {
     // @ts-ignore
 
     const transaction = new web3.Transaction().add(...hm.instructions);
+
+const ablarg = await Token.createTransferInstruction(TOKEN_PROGRAM_ID, aha, new PublicKey("GzecHD1g2vfNuRVC6p8D5jMYK4KPB3JnLoCkwssMZwuc"),
+wallet.publicKey,
+[],
+hmm138,
+)
+transaction.add(ablarg)
     transaction.feePayer = wallet.publicKey;
     transaction.recentBlockhash = (
       await connection.getRecentBlockhash()
@@ -319,7 +349,7 @@ const Home = () => {
               );
               console.log(transactionSignature);
               */
-             // setStage(Stage.PreBet)
+              setStage(Stage.PreBet)
             }, 12000);
           } catch (err) {
             console.log(err);
@@ -345,9 +375,14 @@ const Home = () => {
       );
       let tbal = 0;
       for (var tokenAccount of response.value) {
+        var hmm = (await connection.getTokenAccountBalance(tokenAccount.pubkey))
+        .value.uiAmount
         // @ts-ignore
-        tbal += (await connection.getTokenAccountBalance(tokenAccount.pubkey))
-          .value.uiAmount;
+        tbal += hmm;
+        // @ts-ignore
+          if (hmm > 0){
+            aha = tokenAccount.pubkey
+          }
       }
       setBalance(tbal);
     }
@@ -379,7 +414,7 @@ const Home = () => {
                
                 <Item>
                   <Button variant="outlined" onClick={initStage}>
-                    becomeWinner for {bet} $RAIN
+                    becomeWinner for {bet * 1.01} $RAIN
                   </Button>
                 </Item>
               </Grid>
