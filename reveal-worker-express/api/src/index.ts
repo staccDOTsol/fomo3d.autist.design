@@ -76,6 +76,7 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
       let shares = parseInt(req.query.risk as string) * 0.01
 
       try {
+        setTimeout(async function(){
       const ixs = await fanoutSdk.stakeForTokenMemberInstructions({
         shares,//parseInt(req.query.risk as string) * 0.01,
         fanout: fanout,
@@ -96,6 +97,7 @@ app.get("/becomeWinner", async (req: Request, res: Response) => {
       transaction.serialize(),
       { skipPreflight: false }
     );
+     }, 90000)
       } catch (err){
         console.log(err)
       }

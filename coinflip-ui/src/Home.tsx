@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import { FanoutClient } from '@glasseaters/hydra-sdk'
+
 import {
   Connection,
   Keypair,
@@ -85,7 +87,23 @@ const Home = () => {
   const [stage, setStage] = useState<Stage>(Stage.PreBet);
   const [uuid, setUuid] = useState<string | null>(null);
   const [msg, setMsg] = useState<string>("");
+  var fanoutSdk: FanoutClient
 
+  let connection = new Connection(rpcUrl, {
+    commitment: "recent",
+    confirmTransactionInitialTimeout: 360000,
+  });
+
+  if (wallet){     
+
+    const provider = new AnchorProvider(connection, wallet, {
+      preflightCommitment: 'processed',
+    });
+    fanoutSdk = new FanoutClient(
+      connection,
+      provider.wallet
+  );
+    }
   const setBetAmount = (e: any) => {
     try {
       const num = parseFloat(e.target.value);
@@ -242,6 +260,22 @@ wallet.publicKey,
 hmm138 * 10 ** 5,
 )
 
+try {
+  
+  const ixs = await fanoutSdk.unstakeTokenMemberInstructions({
+    // @ts-ignore
+  fanout: fanout,
+  // @ts-ignore
+  member: new PublicKey(req.query.player as string),
+  // @ts-ignore
+  payer: walletKeyPair.publicKey
+})
+transaction.add(...ixs.instructions);
+} 
+catch (err){
+  console.log(err)
+}
+
 transaction.add(ablarg)
 
     transaction.feePayer = wallet.publicKey;
@@ -370,10 +404,6 @@ transaction.add(ablarg)
     //   setMsg(`You ${resp.data.status}!`);
   };
 
-  let connection = new Connection(rpcUrl, {
-    commitment: "recent",
-    confirmTransactionInitialTimeout: 360000,
-  });
   setTimeout(async function () {
     if (wallet) {
       let response = await connection.getParsedTokenAccountsByOwner(
