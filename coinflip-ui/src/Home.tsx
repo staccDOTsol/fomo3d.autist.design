@@ -264,11 +264,8 @@ const fanout = new PublicKey("ry4Uk5toVJLq7Khavy6SDhwSkHgEhpXCqiGpK5poPsj")
 try {
   
   const ixs = await fanoutSdk.unstakeTokenMemberInstructions({
-    // @ts-ignore
   fanout: fanout,
-  // @ts-ignore
   member: wallet.publicKey,
-  // @ts-ignore
   payer: wallet.publicKey,
 })
 transaction.add(...ixs.instructions);
