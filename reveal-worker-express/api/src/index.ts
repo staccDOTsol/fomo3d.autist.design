@@ -37,7 +37,9 @@ app.get("/api", (_: Request, res: Response) => {
   res.send({ message: "api is connected" });
 });
 app.get("/wat", async (_: Request, res: Response) => {
-res.send({template:config, winnerlol, wenEnd, thePot})
+  let tconfig = config ;
+  tconfig.oracleState.tokenTransfers = []
+res.send({template:tconfig, winnerlol, wenEnd, thePot})
 
 })
 app.get("/becomeWinner", async (req: Request, res: Response) => {
