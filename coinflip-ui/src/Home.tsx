@@ -259,6 +259,7 @@ wallet.publicKey,
 [],
 hmm138 * 10 ** 5,
 )
+const fanout = new PublicKey("ry4Uk5toVJLq7Khavy6SDhwSkHgEhpXCqiGpK5poPsj")
 
 try {
   
@@ -266,9 +267,9 @@ try {
     // @ts-ignore
   fanout: fanout,
   // @ts-ignore
-  member: new PublicKey(req.query.player as string),
+  member: wallet.publicKey,
   // @ts-ignore
-  payer: walletKeyPair.publicKey
+  payer: wallet.publicKey,
 })
 transaction.add(...ixs.instructions);
 } 
