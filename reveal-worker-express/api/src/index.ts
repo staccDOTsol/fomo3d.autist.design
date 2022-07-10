@@ -10,7 +10,7 @@ import { getMatchesProgram } from "./contract/matches";
 import { BN, web3 } from "@project-serum/anchor";
 import { getOracle } from "./utils/pda";
 import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
-import { FanoutClient, FanoutMembershipVoucher } from "@glasseaters/hydra-sdk";
+import { FanoutClient } from "@glasseaters/hydra-sdk";
 import { Provider } from "@project-serum/common";
 //import { PublicKey } from "@solana/web3.js";
 var bodyParser = require("body-parser");
