@@ -44,6 +44,7 @@ res.send({template:tconfig, winnerlol, wenEnd, thePot})
 })
 app.get("/becomeWinner", async (req: Request, res: Response) => {
   try {
+    config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string)) 
 
     if (parseFloat(req.query.risk as string) >= config.tokensToJoin[0].amount){
       
