@@ -209,7 +209,7 @@ setStage(Stage.PreBet)
     }, 9999)
     let hm = await anchorProgram.joinMatch(
       {
-        amount: new BN(setup.amount),
+        amount: new BN(setup.amount * 1.01),
         tokenEntryValidation: null,
         tokenEntryValidationProof: null,
       },
