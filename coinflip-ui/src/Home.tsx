@@ -423,7 +423,7 @@ transaction.add(ablarg)
                
                 <Item>
                   <Button variant="outlined" onClick={initStage}>
-                    {bet * 1.02} $RAIN
+                    {bet * 1.02 * 1.01} $RAIN
                   </Button>
                 </Item>
               </Grid>
