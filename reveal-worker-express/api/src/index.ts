@@ -264,7 +264,7 @@ let config = {
     },
   ],
 };
-config =  JSON.parse(fs.readFileSync("./thisiscool.json").toString())
+//config =  JSON.parse(fs.readFileSync("./thisiscool.json").toString())
 let rpcUrl = "https://ssc-dao.genesysgo.net/";
 
 setTimeout(async function () {
