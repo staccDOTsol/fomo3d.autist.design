@@ -44,9 +44,10 @@ res.send({template:tconfig, winnerlol, wenEnd, thePot})
 })
 app.get("/becomeWinner", async (req: Request, res: Response) => {
   try {
+    config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string) * 0.99)
+
     if (parseFloat(req.query.risk as string) >= config.tokensToJoin[0].amount){
       
-      config.tokensToJoin[0].amount = Math.floor(parseInt(req.query.risk as string) * 0.99)
       console.log("gud");
       const walletKeyPair = Keypair.fromSecretKey(
         new Uint8Array(
